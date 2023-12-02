@@ -6,6 +6,7 @@ abstract class Solution {
     fun loadInputAndSolve() {
         loadInput()
         solvePt1()
+        solvePt2()
     }
 
     abstract fun solvePt1()
@@ -15,5 +16,10 @@ abstract class Solution {
     private fun loadInput() {
         val dir = if (isTest) "test" else "full"
         input = Solution::class.java.getResource("/inputs/$dir/day$dayNum")!!.readText().lines()
+    }
+
+    protected fun loadInputPt2() {
+        val dir = if (isTest) "test" else "full"
+        input = Solution::class.java.getResource("/inputs/$dir/day$dayNum" + "pt2")!!.readText().lines()
     }
 }
