@@ -5,10 +5,12 @@ abstract class Solution {
 
     fun loadInputAndSolve() {
         loadInput()
-        solve()
+        solvePt1()
     }
 
-    abstract fun solve()
+    abstract fun solvePt1()
+
+    abstract fun solvePt2()
 
     private fun loadInput() {
         val dir = if (isTest) "test" else "full"

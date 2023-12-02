@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
         println("Please specify day to run!")
         exitProcess(1)
     }
-    var daySolution = solutionMappings.getOrElse(args[0]) {
+    val daySolution = solutionMappings.getOrElse(args[0]) {
         println("I don't have that day implemented!")
         exitProcess(1)
     }
