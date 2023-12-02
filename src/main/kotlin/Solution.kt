@@ -1,5 +1,5 @@
 abstract class Solution {
-    lateinit var input : String
+    lateinit var input : List<String>
     abstract var dayNum : Int
     var isTest = false
 
@@ -12,6 +12,6 @@ abstract class Solution {
 
     private fun loadInput() {
         val dir = if (isTest) "test" else "full"
-        input = Solution::class.java.getResource("/inputs/$dir/day$dayNum")!!.readText()
+        input = Solution::class.java.getResource("/inputs/$dir/day$dayNum")!!.readText().lines()
     }
 }
