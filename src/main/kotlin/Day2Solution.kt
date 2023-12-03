@@ -42,7 +42,37 @@ class Day2Solution : Solution() {
     }
 
     override fun solvePt2() {
-        TODO("Not yet implemented")
+        var sumGameSetPower = 0
+
+        for (line in input) {
+            val leastAmtCubes = mutableMapOf(
+                "red" to 0,
+                "green" to 0,
+                "blue" to 0
+                )
+
+            val gameIDAndInfo = line.split(":")
+            val allHands = gameIDAndInfo[1].split(";")
+
+            for (hand in allHands) {
+                val cubeTypes = hand.split(", ")
+                for (cubeType in cubeTypes) {
+                    val numAndColor = cubeType.trim().split(" ")
+                    val num = numAndColor[0].toInt()
+                    val color = numAndColor[1]
+                    val currentMinForColor = leastAmtCubes[color]
+                    if (num > currentMinForColor!!) {
+                        leastAmtCubes[color] = num
+                    }
+                }
+            }
+
+            val gamePower = leastAmtCubes.values.fold(1) {s, e -> s * e}
+//            println(gameIDAndInfo[0] + ": " + gamePower)
+            sumGameSetPower += gamePower
+        }
+
+        println(sumGameSetPower)
     }
 
 
