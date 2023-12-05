@@ -2,7 +2,8 @@ import kotlin.system.exitProcess
 
 val solutionMappings = mapOf(
     "day1" to Day1Solution(),
-    "day2" to Day2Solution()
+    "day2" to Day2Solution(),
+    "day3" to Day3Solution()
     )
 
 fun main(args: Array<String>) {
