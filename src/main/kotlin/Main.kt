@@ -3,7 +3,8 @@ import kotlin.system.exitProcess
 val solutionMappings = mapOf(
     "day1" to Day1Solution(),
     "day2" to Day2Solution(),
-    "day3" to Day3Solution()
+    "day3" to Day3Solution(),
+    "day4" to Day4Solution()
     )
 
 fun main(args: Array<String>) {
@@ -20,5 +21,5 @@ fun main(args: Array<String>) {
     if (args.size > 1 && args[1] == "test") {
         daySolution.isTest = true
     }
-    daySolution.loadInputAndSolve()
+    daySolution.loadInputAndSolve(args[0])
 }

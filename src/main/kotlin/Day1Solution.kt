@@ -1,5 +1,4 @@
 class Day1Solution : Solution() {
-    override var dayNum = 1
 
     override fun solvePt1() {
         var calibrationSum = 0

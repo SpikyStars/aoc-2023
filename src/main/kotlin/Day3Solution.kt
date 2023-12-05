@@ -1,5 +1,4 @@
 class Day3Solution : Solution() {
-    override var dayNum = 3
 
     override fun solvePt1() {
         var sumPartNums = 0

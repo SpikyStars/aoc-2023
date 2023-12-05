@@ -1,5 +1,4 @@
 class Day2Solution : Solution() {
-    override var dayNum = 2
 
     val maxRed = 12
     val maxGreen = 13
