@@ -10,7 +10,29 @@ class Day5Solution : Solution() {
     private val humidityToLocationMappings = mutableListOf<NumberMapping>()
 
     override fun solvePt1() {
-        // Initial processing.
+        parseInput()
+        println(seedList.minOfOrNull { s -> findSeedLocation(s) })
+    }
+
+    override fun solvePt2() {
+        // Input should be saved from pt 1, no need to re-parse
+
+        val rangePairs = mutableListOf<Pair<UInt, UInt>>()
+        for (i in 0..< seedList.size step 2) {
+            rangePairs.add(Pair(seedList[i], seedList[i+1]))
+        }
+
+        var minLocation = UInt.MAX_VALUE
+
+        for (pair in rangePairs) {
+//            if ()
+
+        }
+
+    }
+
+
+    private fun parseInput() {
         var currentCollection : MutableList<NumberMapping>? = null
         for (line in input) {
 
@@ -44,12 +66,6 @@ class Day5Solution : Solution() {
                 }
             }
         }
-
-        println(seedList.minOfOrNull { s -> findSeedLocation(s) })
-    }
-
-    override fun solvePt2() {
-        TODO("Not yet implemented")
     }
 
     private fun findSeedLocation(seed: UInt): UInt {
@@ -62,9 +78,23 @@ class Day5Solution : Solution() {
         return mapNumberUsingMappings(humidityToLocationMappings, seedHumidity)
     }
 
+//    private fun estimateSeedLocation(rangeStart: UInt, rangeLength: UInt) : UInt {
+//
+//
+//    }
+
     private fun mapNumberUsingMappings(mappings : MutableList<NumberMapping>, num : UInt) : UInt {
         return mappings.find { e -> e.numInRange(num) }?.getMappedValue(num) ?: num
     }
+
+//    private fun mapNumUsingMappingsRange(mappings : MutableList<NumberMapping>,
+//                                         rangeStart: UInt, rangeLength: UInt) : UInt {
+//
+//        for (mapping in mappings) {
+//
+//        }
+//
+//    }
 
     class NumberMapping(private val sourceStart : UInt,
                         val destStart : UInt,
@@ -72,6 +102,11 @@ class Day5Solution : Solution() {
 
         fun numInRange(num : UInt) : Boolean {
             return num >= sourceStart && num < sourceStart + rangeLength
+        }
+
+        fun numInRange(rangeStart: UInt, rangeLength: UInt) : Boolean {
+            if (rangeStart < sourceStart) return false
+            return true
         }
 
         fun getMappedValue(num : UInt) : UInt {
