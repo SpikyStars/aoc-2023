@@ -4,7 +4,8 @@ val solutionMappings = mapOf(
     "day1" to Day1Solution(),
     "day2" to Day2Solution(),
     "day3" to Day3Solution(),
-    "day4" to Day4Solution()
+    "day4" to Day4Solution(),
+    "day5" to Day5Solution(),
     )
 
 fun main(args: Array<String>) {
