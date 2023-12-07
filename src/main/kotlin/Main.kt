@@ -6,6 +6,7 @@ val solutionMappings = mapOf(
     "day3" to Day3Solution(),
     "day4" to Day4Solution(),
     "day5" to Day5Solution(),
+    "day6" to Day6Solution()
     )
 
 fun main(args: Array<String>) {
