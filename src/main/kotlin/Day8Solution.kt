@@ -1,9 +1,14 @@
 class Day8Solution : Solution() {
+    private val nodeNeighborMapping : MutableMap<String, List<String>> = mutableMapOf()
+    private val nodeNameMapping : MutableMap<String, Node> = mutableMapOf()
+
+    private lateinit var directions : String
+
+
     override fun solvePt1() {
-        val instructions = input[0]
+        directions = input[0]
 
         // Initialize node mapping
-        val nodeNeighborMapping : MutableMap<String, List<String>> = mutableMapOf()
         for (line in input.drop(2)) {
             val nodeDeclaration = line.split("=")
             val nodeName = nodeDeclaration[0].trim()
@@ -12,7 +17,6 @@ class Day8Solution : Solution() {
             nodeNeighborMapping[nodeName] = nodeNeighbors
         }
         // Initialize node objects
-        val nodeNameMapping : MutableMap<String, Node> = mutableMapOf()
         for (nodeName in nodeNeighborMapping.keys) {
             nodeNameMapping[nodeName] = Node(nodeName)
         }
@@ -27,12 +31,33 @@ class Day8Solution : Solution() {
         }
 
         val startingNode = nodeNameMapping.getValue("AAA")
-        println(getNumStepsFromDirections(startingNode, instructions))
+        println(getNumStepsFromDirections(startingNode, directions))
 
     }
 
     override fun solvePt2() {
-        TODO("Not yet implemented")
+        val startingNodes : MutableList<Node> = nodeNameMapping.values.filter {
+            it.name.endsWith("A")
+        }.toMutableList()
+
+        var numSteps = 0
+
+        var currentNodes = startingNodes
+        while (!areAllPathsComplete(currentNodes)) {
+            val newNodes : MutableList<Node> = mutableListOf()
+            val direction = directions[numSteps % directions.length]
+            for (currentNode in currentNodes) {
+                if (direction == 'R') {
+                    currentNode.right?.let { newNodes.add(it) }
+                } else {
+                    currentNode.left?.let { newNodes.add(it) }
+                }
+            }
+            numSteps++
+            currentNodes = newNodes
+            println(newNodes.toString())
+        }
+        println(numSteps)
     }
 
     private fun getNumStepsFromDirections(startNode : Node, directions : String) : Int {
@@ -51,6 +76,10 @@ class Day8Solution : Solution() {
         return numSteps
     }
 
+    private fun areAllPathsComplete(nodes : List<Node>) : Boolean {
+        return nodes.all { n -> n.name.endsWith("Z") }
+    }
+
     class Node (val name: String) {
         var left : Node? = null
         var right : Node? = null
@@ -67,5 +96,11 @@ class Day8Solution : Solution() {
         override fun hashCode(): Int {
             return name.hashCode()
         }
+
+        override fun toString(): String {
+            return "Node(name='$name')"
+        }
+
+
     }
 }
