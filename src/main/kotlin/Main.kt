@@ -9,7 +9,8 @@ val solutionMappings = mapOf(
     "day6" to Day6Solution(),
     "day7" to Day7Solution(),
     "day8" to Day8Solution(),
-    "day9" to Day9Solution()
+    "day9" to Day9Solution(),
+    "day10" to Day10Solution()
     )
 
 fun main(args: Array<String>) {
